@@ -1,0 +1,16 @@
+<div class="text-center" *ngIf="isLoading">
+  <i class="fa fa-2x fa-spinner fa-pulse"></i>
+</div>
+<table class="table table-striped" *ngIf="!isLoading">
+  <thead>
+  <tr>
+    <th class="text-center">Complete</th>
+    <th>Assigned To</th>
+    <th>Description</th>
+    <th>Date Due</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr app-todo *ngFor="let todo of todos" [todo]="todo"></tr>
+  </tbody>
+</table>

@@ -50,10 +50,6 @@ export class TodoListComponent implements OnInit {
     this.loadData();
   }
 
-  showCompleteChange(): void {
-    console.log('show complete = ' + this.showComplete);
-  }
-
   loadData() {
     // Visualforce.remoting.Manager.invokeAction(
     //   '{!$RemoteAction.}',

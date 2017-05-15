@@ -41,12 +41,17 @@ export class TodoListComponent implements OnInit {
     }
   ];
   isLoading = false;
+  showComplete = true;
 
   constructor() {
   }
 
   ngOnInit() {
     this.loadData();
+  }
+
+  showCompleteChange(): void {
+    console.log('show complete = ' + this.showComplete);
   }
 
   loadData() {

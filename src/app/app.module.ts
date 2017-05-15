@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoComponent } from './todo/todo.component';
+import { ShowCompleteTasksPipe } from './show-complete-tasks.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    TodoComponent
+    TodoComponent,
+    ShowCompleteTasksPipe
   ],
   imports: [
     BrowserModule,

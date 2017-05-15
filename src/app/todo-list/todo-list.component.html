@@ -1,3 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="checkbox-inline">
+      <label>
+        <input type="checkbox" [(ngModel)]="showComplete" (change)="showCompleteChange()"> Show completed tasks
+      </label>
+    </div>
+  </div>
+</div>
 <div class="text-center" *ngIf="isLoading">
   <i class="fa fa-2x fa-spinner fa-pulse"></i>
 </div>
@@ -11,6 +20,6 @@
   </tr>
   </thead>
   <tbody>
-  <tr app-todo *ngFor="let todo of todos" [todo]="todo"></tr>
+  <tr app-todo *ngFor="let todo of todos | showCompleteTasks:showComplete" [todo]="todo"></tr>
   </tbody>
 </table>

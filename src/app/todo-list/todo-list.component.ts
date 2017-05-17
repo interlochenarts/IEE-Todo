@@ -51,6 +51,7 @@ export class TodoListComponent implements OnInit {
       }
     });
     this.sortColumn = 'complete';
+    this.todos = this.todos.slice();
   }
 
   sortByName(): void {
@@ -63,6 +64,7 @@ export class TodoListComponent implements OnInit {
       }
     });
     this.sortColumn = 'name';
+    this.todos = this.todos.slice();
   }
 
   sortByDescription(): void {
@@ -75,6 +77,7 @@ export class TodoListComponent implements OnInit {
       }
     });
     this.sortColumn = 'description';
+    this.todos = this.todos.slice();
   }
 
   sortByDueDate(): void {
@@ -87,6 +90,7 @@ export class TodoListComponent implements OnInit {
       }
     });
     this.sortColumn = 'dueDate';
+    this.todos = this.todos.slice();
   }
 
   getSortDirectionClass(col: string) {

@@ -12,7 +12,7 @@ declare var Visualforce: any;
 export class TodoListComponent implements OnInit {
   todos: Todo[];
   isLoading = true;
-  showComplete = false;
+  showComplete = true;
   sortColumn: string;
   sortAscending = false;
 
@@ -30,6 +30,7 @@ export class TodoListComponent implements OnInit {
         if (result) {
           this.isLoading = false;
           this.todos = result;
+          this.sortByColumn('dueDate');
         }
       }, {
         buffer: false
@@ -54,42 +55,16 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todos.slice();
   }
 
-  sortByName(): void {
-    this.sortAscending = this.getSortDirection('name');
+  sortByColumn(col: string): void {
+    this.sortAscending = this.getSortDirection(col);
     this.todos.sort((a, b) => {
       if (this.sortAscending) {
-        return (a.personAssigned === b.personAssigned) ? 0 : a.personAssigned > b.personAssigned ? -1 : 1;
+        return (a[col] === b[col]) ? 0 : a[col] > b[col] ? -1 : 1;
       } else {
-        return (a.personAssigned === b.personAssigned) ? 0 : a.personAssigned > b.personAssigned ? 1 : -1;
+        return (a[col] === b[col]) ? 0 : a[col] > b[col] ? 1 : -1;
       }
     });
-    this.sortColumn = 'name';
-    this.todos = this.todos.slice();
-  }
-
-  sortByDescription(): void {
-    this.sortAscending = this.getSortDirection('description');
-    this.todos.sort((a, b) => {
-      if (this.sortAscending) {
-        return (a.description === b.description) ? 0 : a.description > b.description ? -1 : 1;
-      } else {
-        return (a.description === b.description) ? 0 : a.description > b.description ? 1 : -1;
-      }
-    });
-    this.sortColumn = 'description';
-    this.todos = this.todos.slice();
-  }
-
-  sortByDueDate(): void {
-    this.sortAscending = this.getSortDirection('dueDate');
-    this.todos.sort((a, b) => {
-      if (this.sortAscending) {
-        return (a.dueDate === b.dueDate) ? 0 : a.dueDate > b.dueDate ? -1 : 1;
-      } else {
-        return (a.dueDate === b.dueDate) ? 0 : a.dueDate > b.dueDate ? 1 : -1;
-      }
-    });
-    this.sortColumn = 'dueDate';
+    this.sortColumn = col;
     this.todos = this.todos.slice();
   }
 

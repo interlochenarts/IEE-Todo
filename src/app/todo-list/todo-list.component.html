@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="checkbox-inline">
-      <label>
+      <label class="unselectable">
         <input type="checkbox" [(ngModel)]="showComplete"> Show completed tasks
       </label>
     </div>
@@ -16,9 +16,9 @@
     <th class="text-center" (click)="sortByComplete()">Complete <i class="fa"
                                                                    [ngClass]="getSortDirectionClass('complete')"></i>
     </th>
-    <th (click)="sortByName()">Assigned To <i class="fa" [ngClass]="getSortDirectionClass('name')"></i></th>
-    <th (click)="sortByDescription()">Description <i class="fa" [ngClass]="getSortDirectionClass('description')"></i></th>
-    <th (click)="sortByDueDate()">Date Due <i class="fa" [ngClass]="getSortDirectionClass('dueDate')"></i></th>
+    <th (click)="sortByColumn('personAssigned')">Assigned To <i class="fa" [ngClass]="getSortDirectionClass('personAssigned')"></i></th>
+    <th (click)="sortByColumn('description')">Description <i class="fa" [ngClass]="getSortDirectionClass('description')"></i></th>
+    <th (click)="sortByColumn('dueDate')">Date Due <i class="fa" [ngClass]="getSortDirectionClass('dueDate')"></i></th>
   </tr>
   </thead>
   <tbody>

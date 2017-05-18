@@ -1,3 +1,30 @@
-<p>
-  todo-controls works!
-</p>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="checkbox-inline">
+      <label class="unselectable">
+        <input type="checkbox" [(ngModel)]="showComplete" (click)="getTodoPageSlice()"> Show completed tasks
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <app-todo-list [todos]="todoSlice" [showComplete]="showComplete"></app-todo-list>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <!-- paging controls -->
+    <div class="col-md-3 col-md-offset-9 col-sm-4 col-sm-offset-8 text-right">
+      <span id="leftControls" *ngIf="showLeftPageControls()">
+        <i class="fa fa-angle-double-left" aria-label="First Page" (click)="getFirstPage()"></i>
+        <i class="fa fa-angle-left" aria-label="Previous" (click)="getPreviousPage()"></i>
+      </span>
+      Page {{pageNumber}} of {{maxPages}}
+      <span id="rightControls" *ngIf="showRightPageControls()">
+        <i class="fa fa-angle-right" aria-label="Next" (click)="getNextPage()"></i>
+        <i class="fa fa-angle-double-right" aria-label="Last Page" (click)="getLastPage()"></i>
+      </span>
+    </div>
+  </div>
+</div>

@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoComponent } from './todo/todo.component';
 import { ShowCompleteTasksPipe } from './show-complete-tasks.pipe';
+import { TodoControlsComponent } from './todo-controls/todo-controls.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoComponent,
-    ShowCompleteTasksPipe
+    ShowCompleteTasksPipe,
+    TodoControlsComponent
   ],
   imports: [
     BrowserModule,

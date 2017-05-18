@@ -16,12 +16,12 @@
     <th class="text-center" (click)="sortByComplete()">Complete <i class="fa"
                                                                    [ngClass]="getSortDirectionClass('complete')"></i>
     </th>
-    <th (click)="sortByColumn('personAssigned')">Assigned To <i class="fa" [ngClass]="getSortDirectionClass('personAssigned')"></i></th>
-    <th (click)="sortByColumn('description')">Description <i class="fa" [ngClass]="getSortDirectionClass('description')"></i></th>
-    <th (click)="sortByColumn('dueDate')">Date Due <i class="fa" [ngClass]="getSortDirectionClass('dueDate')"></i></th>
+    <th (click)="sortByColumnName('personAssigned')">Assigned To <i class="fa" [ngClass]="getSortDirectionClass('personAssigned')"></i></th>
+    <th (click)="sortByColumnName('description')">Description <i class="fa" [ngClass]="getSortDirectionClass('description')"></i></th>
+    <th (click)="sortByColumnName('dueDate')">Date Due <i class="fa" [ngClass]="getSortDirectionClass('dueDate')"></i></th>
   </tr>
   </thead>
   <tbody>
-  <tr app-todo *ngFor="let todo of todos | showCompleteTasks:showComplete" [todo]="todo"></tr>
+  <tr app-todo *ngFor="let todo of todos | showCompleteTasks:showComplete" [todo]="todo" [ngClass]="{pastDue:taskIsPastDue(todo.dueDate, todo.isComplete), complete:todo.isComplete}"></tr>
   </tbody>
 </table>

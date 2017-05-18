@@ -30,12 +30,16 @@ export class TodoListComponent implements OnInit {
         if (result) {
           this.isLoading = false;
           this.todos = result;
-          this.sortByColumn('dueDate');
+          this.sortByColumnName('dueDate');
         }
       }, {
         buffer: false
       }
     );
+  }
+
+  taskIsPastDue(dueDate: Date, isComplete: boolean) {
+    return (!isComplete && new Date() > dueDate);
   }
 
   getSortDirection(col: string) {
@@ -55,7 +59,7 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todos.slice();
   }
 
-  sortByColumn(col: string): void {
+  sortByColumnName(col: string): void {
     this.sortAscending = this.getSortDirection(col);
     this.todos.sort((a, b) => {
       if (this.sortAscending) {

@@ -8,3 +8,11 @@ th, .unselectable {
 th {
   cursor: pointer;
 }
+
+.pastDue {
+  color: red;
+}
+
+.complete {
+  color: gray;
+}

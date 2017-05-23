@@ -27,6 +27,6 @@
   <tr app-todo
       *ngFor="let todo of todos | showCompleteTasks:showComplete"
       [todo]="todo"
-      [ngClass]="{pastDue:taskIsPastDue(todo.dueDate, todo.isComplete), complete:todo.isComplete}"></tr>
+      [ngClass]="{pastDue:TodoListComponent.taskIsPastDue(todo.dueDate, todo.isComplete), complete:todo.isComplete}"></tr>
   </tbody>
 </table>

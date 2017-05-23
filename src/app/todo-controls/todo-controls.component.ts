@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Todo} from '../todo';
-
-declare var Visualforce: any;
+import {TodoListDataService} from '../todo-list-data.service';
 
 @Component({
   selector: 'app-todo-controls',
@@ -9,7 +8,7 @@ declare var Visualforce: any;
   styleUrls: ['./todo-controls.component.css']
 })
 export class TodoControlsComponent implements OnInit {
-  todos: Todo[];
+  todos: Array<Todo>;
   isLoading = true;
   showComplete = true;
 
@@ -19,7 +18,7 @@ export class TodoControlsComponent implements OnInit {
 
   todoSlice: Array<Todo>;
 
-  constructor() {
+  constructor(private todoDataService: TodoListDataService) {
   }
 
   ngOnInit() {
@@ -27,19 +26,12 @@ export class TodoControlsComponent implements OnInit {
   }
 
   loadData() {
-    Visualforce.remoting.Manager.invokeAction(
-      'IEE_TodoViewController.getTodoList',
-      (result) => {
-        if (result) {
-          this.isLoading = false;
-          this.todos = result;
-          this.maxPages = Math.ceil(this.todos.length / this.pageLength);
-          this.getTodoPageSlice();
-        }
-      }, {
-        buffer: false
-      }
-    );
+    this.todoDataService.getTodoList().subscribe(data => {
+      this.todos = data;
+      this.maxPages = Math.ceil(this.todos.length / this.pageLength);
+      this.getTodoPageSlice();
+      this.isLoading = false;
+    });
   }
 
   showLeftPageControls(): boolean {

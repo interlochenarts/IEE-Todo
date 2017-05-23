@@ -3,4 +3,5 @@ export class Todo {
   personAssigned: string;
   description: string;
   dueDate: string;
+  linkUrl: string;
 }

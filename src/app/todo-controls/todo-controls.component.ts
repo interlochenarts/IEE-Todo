@@ -24,14 +24,12 @@ export class TodoControlsComponent implements OnInit {
   ngOnInit() {
     this.todoDataService.todoList.asObservable().subscribe({
       next: data => {
-        console.log('data returned: ' + data);
         this.todos = data;
         this.maxPages = Math.ceil(this.todos.length / this.pageLength);
         this.getTodoPageSlice();
         this.isLoading = false;
       }
     });
-    this.todoDataService.sortSettings.asObservable().subscribe(data => console.log(data));
   }
 
   showLeftPageControls(): boolean {

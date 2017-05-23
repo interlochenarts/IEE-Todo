@@ -13,10 +13,7 @@ export class TodoListDataService {
   constructor() {
     Visualforce.remoting.Manager.invokeAction(
       'IEE_TodoViewController.getTodoList',
-      result => {
-        this.todoList.next(result);
-        console.log(result);
-      },
+      result => this.todoList.next(result),
       {buffer: false}
     );
   }

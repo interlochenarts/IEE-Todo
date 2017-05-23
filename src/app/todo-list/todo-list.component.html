@@ -4,26 +4,26 @@
 <table class="table table-striped" *ngIf="!isLoading">
   <thead>
   <tr>
-    <th class="text-center" (click)="sortByComplete();$event.stopPropagation()">Complete
+    <th class="text-center col-sm-2" (click)="sortByComplete();$event.stopPropagation()">Complete
       <i class="fa"
          [ngClass]="getSortDirectionClass('complete')"></i>
     </th>
-    <th (click)="sortByColumnName('personAssigned');$event.stopPropagation()">Assigned To
+    <th class="col-sm-3" (click)="sortByColumnName('personAssigned');$event.stopPropagation()">Assigned To
       <i class="fa"
          [ngClass]="getSortDirectionClass('personAssigned')"></i>
     </th>
-    <th (click)="sortByColumnName('description');$event.stopPropagation()">Description
+    <th class="col-sm-4" (click)="sortByColumnName('description');$event.stopPropagation()">Description
       <i class="fa"
          [ngClass]="getSortDirectionClass('description')"></i>
     </th>
-    <th (click)="sortByColumnName('dueDate');$event.stopPropagation()">Date Due
+    <th class="col-sm-3" (click)="sortByColumnName('dueDate');$event.stopPropagation()">Date Due
       <i class="fa" [ngClass]="getSortDirectionClass('dueDate')"></i>
     </th>
   </tr>
   </thead>
   <tbody>
   <tr app-todo
-      *ngFor="let todo of todos | showCompleteTasks:showComplete"
+      *ngFor="let todo of todos"
       [todo]="todo"
       [ngClass]="{pastDue:taskIsPastDue(todo.dueDate, todo.isComplete), complete:todo.isComplete}"></tr>
   </tbody>

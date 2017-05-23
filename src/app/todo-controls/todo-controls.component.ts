@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Todo} from '../todo';
 import {TodoListDataService} from '../todo-list-data.service';
+import {ShowCompleteTasksPipe} from '../show-complete-tasks.pipe';
 
 @Component({
   selector: 'app-todo-controls',
   templateUrl: './todo-controls.component.html',
-  styleUrls: ['./todo-controls.component.css']
+  styleUrls: ['./todo-controls.component.css'],
+  providers: [ShowCompleteTasksPipe]
 })
 export class TodoControlsComponent implements OnInit {
   todos: Array<Todo>;
@@ -18,14 +20,14 @@ export class TodoControlsComponent implements OnInit {
 
   todoSlice: Array<Todo>;
 
-  constructor(private todoDataService: TodoListDataService) {
+  constructor(private todoDataService: TodoListDataService, private completePipe: ShowCompleteTasksPipe) {
   }
 
   ngOnInit() {
     this.todoDataService.todoList.asObservable().subscribe({
       next: data => {
         this.todos = data;
-        this.maxPages = Math.ceil(this.todos.length / this.pageLength);
+        this.calculateMaxPages(this.todos);
         this.getTodoPageSlice();
         this.isLoading = false;
       }
@@ -60,15 +62,25 @@ export class TodoControlsComponent implements OnInit {
     this.getTodoPageSlice();
   }
 
+  updateShowComplete(): void {
+    this.getTodoPageSlice();
+  }
+
+  calculateMaxPages(todos: Array<Todo>): void {
+    this.maxPages = Math.ceil(todos.length / this.pageLength);
+  }
+
   getTodoPageSlice(): void {
     if (this.todos) {
+      const todos = this.completePipe.transform(this.todos, this.showComplete);
+      this.calculateMaxPages(todos);
       const p = this.pageNumber - 1;
       const start = p * this.pageLength;
       const end = (this.todos.length - (this.pageNumber * this.pageLength)) > 0
         ? this.pageNumber * this.pageLength
         : this.todos.length;
 
-      this.todoSlice = JSON.parse(JSON.stringify(this.todos.slice(start, end)));
+      this.todoSlice = JSON.parse(JSON.stringify(todos.slice(start, end)));
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <div class="checkbox-inline">
       <label class="unselectable">
-        <input type="checkbox" [(ngModel)]="showComplete" (click)="getTodoPageSlice()"> Show completed tasks
+        <input type="checkbox" [(ngModel)]="showComplete" (change)="updateShowComplete()"> Show completed tasks
       </label>
     </div>
   </div>

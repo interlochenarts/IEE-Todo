@@ -9,11 +9,11 @@ import {TodoListDataService} from '../todo-list-data.service';
 })
 export class TodoControlsComponent implements OnInit {
   todos: Array<Todo>;
-  isLoading = true;
+  isLoading = false;
   showComplete = true;
 
   pageNumber = 1;
-  pageLength = 10;
+  pageLength = 5;
   maxPages = 1;
 
   todoSlice: Array<Todo>;
@@ -22,16 +22,16 @@ export class TodoControlsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData();
-  }
-
-  loadData() {
-    this.todoDataService.getTodoList().subscribe(data => {
-      this.todos = data;
-      this.maxPages = Math.ceil(this.todos.length / this.pageLength);
-      this.getTodoPageSlice();
-      this.isLoading = false;
+    this.todoDataService.todoList.asObservable().subscribe({
+      next: data => {
+        console.log('data returned: ' + data);
+        this.todos = data;
+        this.maxPages = Math.ceil(this.todos.length / this.pageLength);
+        this.getTodoPageSlice();
+        this.isLoading = false;
+      }
     });
+    this.todoDataService.sortSettings.asObservable().subscribe(data => console.log(data));
   }
 
   showLeftPageControls(): boolean {
@@ -70,8 +70,6 @@ export class TodoControlsComponent implements OnInit {
         ? this.pageNumber * this.pageLength
         : this.todos.length;
 
-      console.log('Slicing:: start: ' + start + ' / end: ' + end);
-      console.log(this.todos.slice(start, end));
       this.todoSlice = JSON.parse(JSON.stringify(this.todos.slice(start, end)));
     }
   }

@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Todo} from '../todo';
-import {Observable} from 'rxjs/Observable';
 import {SortSettings} from '../sort-settings';
 import {TodoListDataService} from '../todo-list-data.service';
 
@@ -13,19 +12,19 @@ export class TodoListComponent implements OnInit {
   @Input() todos: Array<Todo>;
   @Input() isLoading;
   @Input() showComplete: boolean;
-  sortSettings: Observable<SortSettings>;
   sortValues: SortSettings;
-
-  static taskIsPastDue(dueDate: Date, isComplete: boolean) {
-    return (!isComplete && new Date() > dueDate);
-  }
 
   constructor(private todoDataService: TodoListDataService) {
   }
 
   ngOnInit() {
-    this.sortSettings = this.todoDataService.getSortSettings();
-    this.sortSettings.subscribe(data => this.sortValues = data);
+    this.todoDataService.sortSettings.asObservable().subscribe({
+      next: data => this.sortValues = data
+    });
+  }
+
+  taskIsPastDue(dueDate: Date, isComplete: boolean) {
+    return (!isComplete && new Date() > dueDate);
   }
 
   getSortDirectionClass(col: string) {
@@ -38,5 +37,13 @@ export class TodoListComponent implements OnInit {
     }
 
     return sortClass;
+  }
+
+  sortByColumnName(col: string): void {
+    this.todoDataService.sortByColumnName(col);
+  }
+
+  sortByComplete(): void {
+    this.todoDataService.sortByComplete();
   }
 }

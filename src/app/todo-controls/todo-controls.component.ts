@@ -15,7 +15,7 @@ export class TodoControlsComponent implements OnInit {
   showComplete = true;
 
   pageNumber = 1;
-  pageLength = 5;
+  pageLength = 10;
   maxPages = 1;
 
   todoSlice: Array<Todo>;
@@ -74,6 +74,15 @@ export class TodoControlsComponent implements OnInit {
     if (this.todos) {
       const todos = this.completePipe.transform(this.todos, this.showComplete);
       this.calculateMaxPages(todos);
+
+      if (this.pageNumber > this.maxPages) {
+        this.pageNumber = this.maxPages;
+      }
+
+      if (this.pageNumber < 1) {
+        this.pageNumber = 1;
+      }
+
       const p = this.pageNumber - 1;
       const start = p * this.pageLength;
       const end = (this.todos.length - (this.pageNumber * this.pageLength)) > 0

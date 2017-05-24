@@ -7,13 +7,16 @@ declare const Visualforce: any;
 
 @Injectable()
 export class TodoListDataService {
-  public sortSettings = new BehaviorSubject<SortSettings>({sortAscending: false, sortColumn: 'dueDate'});
+  public sortSettings = new BehaviorSubject<SortSettings>({sortAscending: true, sortColumn: 'dueDate'});
   public todoList = new BehaviorSubject<Todo[]>([]);
 
   constructor() {
     Visualforce.remoting.Manager.invokeAction(
       'IEE_TodoViewController.getTodoList',
-      result => this.todoList.next(result),
+      result => {
+        this.todoList.next(result);
+        this.sortByColumnName('dueDate');
+      },
       {buffer: false}
     );
   }

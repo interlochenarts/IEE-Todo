@@ -8,26 +8,34 @@
   </div>
   <!-- paging controls -->
   <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-1 text-right">
-      <span id="leftControls" *ngIf="showLeftPageControls()">
-        <a class="btn btn-default"
-           (click)="getFirstPage()"
-           href="javascript:void(0);"
-           title="First Page"><i class="fa fa-angle-double-left" aria-label="First Page"></i></a>
-        <a class="btn btn-default"
-           (click)="getPreviousPage()"
-           href="javascript:void(0);"
-           title="Previous Page"><i class="fa fa-angle-left" aria-label="Previous Page"></i></a>
-      </span>
+    <span id="leftControls">
+      <button type="button"
+              class="btn btn-default"
+              (click)="getFirstPage()"
+              href="javascript:void(0);"
+              [disabled]="!showLeftPageControls()"
+              title="First Page"><i class="fa fa-angle-double-left" aria-label="First Page"></i></button>
+      <button type="button"
+              class="btn btn-default"
+              (click)="getPreviousPage()"
+              href="javascript:void(0);"
+              [disabled]="!showLeftPageControls()"
+              title="Previous Page"><i class="fa fa-angle-left" aria-label="Previous Page"></i></button>
+    </span>
     Page {{pageNumber}} of {{maxPages}}
-    <span id="rightControls" *ngIf="showRightPageControls()">
-        <a class="btn btn-default"
-           (click)="getNextPage()"
-           href="javascript:void(0);"
-           title="Next Page"><i class="fa fa-angle-right" aria-label="Next Page"></i></a>
-        <a class="btn btn-default"
-           (click)="getLastPage()"
-           href="javascript:void(0);"
-           title="Last Page"><i class="fa fa-angle-double-right" aria-label="Last Page"></i></a>
+    <span id="rightControls">
+      <button type="button"
+              class="btn btn-default"
+              (click)="getNextPage()"
+              href="javascript:void(0);"
+              [disabled]="!showRightPageControls()"
+              title="Next Page"><i class="fa fa-angle-right" aria-label="Next Page"></i></button>
+      <button type="button"
+              class="btn btn-default"
+              (click)="getLastPage()"
+              href="javascript:void(0);"
+              [disabled]="!showRightPageControls()"
+              title="Last Page"><i class="fa fa-angle-double-right" aria-label="Last Page"></i></button>
       </span>
   </div>
 </div>

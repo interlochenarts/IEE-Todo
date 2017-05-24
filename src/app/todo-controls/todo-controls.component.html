@@ -14,12 +14,14 @@
               (click)="getFirstPage()"
               href="javascript:void(0);"
               [disabled]="!showLeftPageControls()"
+              [ngClass]="{disabled:!showLeftPageControls()}"
               title="First Page"><i class="fa fa-angle-double-left" aria-label="First Page"></i></button>
       <button type="button"
               class="btn btn-default"
               (click)="getPreviousPage()"
               href="javascript:void(0);"
               [disabled]="!showLeftPageControls()"
+              [ngClass]="{disabled:!showLeftPageControls()}"
               title="Previous Page"><i class="fa fa-angle-left" aria-label="Previous Page"></i></button>
     </span>
     Page {{pageNumber}} of {{maxPages}}
@@ -29,12 +31,14 @@
               (click)="getNextPage()"
               href="javascript:void(0);"
               [disabled]="!showRightPageControls()"
+              [ngClass]="{disabled:!showRightPageControls()}"
               title="Next Page"><i class="fa fa-angle-right" aria-label="Next Page"></i></button>
       <button type="button"
               class="btn btn-default"
               (click)="getLastPage()"
               href="javascript:void(0);"
               [disabled]="!showRightPageControls()"
+              [ngClass]="{disabled:!showRightPageControls()}"
               title="Last Page"><i class="fa fa-angle-double-right" aria-label="Last Page"></i></button>
       </span>
   </div>

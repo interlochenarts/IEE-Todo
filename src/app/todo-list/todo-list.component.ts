@@ -23,8 +23,8 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  taskIsPastDue(dueDate: Date, isComplete: boolean) {
-    return (!isComplete && new Date() > dueDate);
+  taskIsPastDue(dueDate: Date) {
+    return new Date() > dueDate;
   }
 
   getSortDirectionClass(col: string) {
@@ -41,9 +41,5 @@ export class TodoListComponent implements OnInit {
 
   sortByColumnName(col: string): void {
     this.todoDataService.sortByColumnName(col);
-  }
-
-  sortByComplete(): void {
-    this.todoDataService.sortByComplete();
   }
 }

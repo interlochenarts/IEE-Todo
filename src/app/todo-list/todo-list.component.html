@@ -21,6 +21,6 @@
   <tr app-todo
       *ngFor="let todo of todos"
       [todo]="todo"
-      [ngClass]="{pastDue:taskIsPastDue(todo.dueDate, todo.isComplete), complete:todo.isComplete}"></tr>
+      [ngClass]="{pastDue:taskIsPastDue(todo.dueDate)}"></tr>
   </tbody>
 </table>

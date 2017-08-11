@@ -8,13 +8,13 @@
       <i class="fa"
          [ngClass]="getSortDirectionClass('personAssigned')"></i>
     </th>
-    <th class="col-xs-2" (click)="sortByColumnName('school');$event.stopPropagation()">School
-      <i class="fa"
-         [ngClass]="getSortDirectionClass('school')"></i>
-    </th>
     <th class="col-xs-5" (click)="sortByColumnName('description');$event.stopPropagation()">Description
       <i class="fa"
          [ngClass]="getSortDirectionClass('description')"></i>
+    </th>
+    <th class="col-xs-2" (click)="sortByColumnName('school');$event.stopPropagation()">School
+      <i class="fa"
+         [ngClass]="getSortDirectionClass('school')"></i>
     </th>
     <th class="col-xs-2" (click)="sortByColumnName('dueDate');$event.stopPropagation()">Date Due
       <i class="fa" [ngClass]="getSortDirectionClass('dueDate')"></i>

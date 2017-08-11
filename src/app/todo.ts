@@ -4,4 +4,5 @@ export class Todo {
   description: string;
   dueDate: string;
   linkUrl: string;
+  school: string;
 }

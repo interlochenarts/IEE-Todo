@@ -11,7 +11,6 @@ import {TodoListDataService} from '../todo-list-data.service';
 export class TodoListComponent implements OnInit {
   @Input() todos: Array<Todo>;
   @Input() isLoading;
-  @Input() showComplete: boolean;
   sortValues: SortSettings;
 
   constructor(private todoDataService: TodoListDataService) {

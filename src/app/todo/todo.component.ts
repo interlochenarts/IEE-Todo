@@ -8,14 +8,10 @@ import {Todo} from '../todo';
 })
 export class TodoComponent implements OnInit {
   @Input() todo: Todo;
+  @Input() isPastDue: boolean;
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  getCompleteClass() {
-    return this.todo.isComplete ? 'fa-check-square-o' : 'fa-square-o';
-  }
-
 }

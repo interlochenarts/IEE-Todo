@@ -43,3 +43,4 @@ Thumbs.db
 
 # Compressed build file
 IEE_Todo.zip
+/Salesforce/src/staticresources/*.resource

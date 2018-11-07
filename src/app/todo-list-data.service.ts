@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {SortSettings} from './sort-settings';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {BehaviorSubject} from 'rxjs';
 import {Todo} from './todo';
 
 declare const Visualforce: any;

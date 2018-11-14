@@ -15,24 +15,18 @@ export class TodoListDataService {
     Visualforce.remoting.Manager.invokeAction(
       'IEE_TodoViewController.getTodoList',
       result => {
-        const updatedResult = this.fixUrls(result);
-        this.todoList.next(updatedResult);
+        const toDoObjects: Array<Todo> = [];
+        result.forEach( t => {
+          const toDoObj = new Todo();
+          Object.assign(toDoObj, t);
+          toDoObjects.push(t);
+        });
+
+        this.todoList.next(toDoObjects);
         this.sortByColumnName('dueDate');
       },
       {buffer: false}
     );
-  }
-
-  fixUrls(toDos: Array<Todo>) {
-    const toDoObjects: Array<Todo> = [];
-    toDos.forEach( (todo: Todo) => {
-      const toDoObj = new Todo();
-      todo = Object.assign(toDoObj, todo);
-      toDoObj.safeUrl = this.sanitizer.bypassSecurityTrustUrl('/interlochen' + todo.linkUrl);
-      toDoObjects.push(toDoObj);
-    });
-
-    return toDoObjects;
   }
 
   setSortSettings(settings: SortSettings): void {

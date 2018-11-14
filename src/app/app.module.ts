@@ -7,6 +7,7 @@ import {TodoComponent} from './todo/todo.component';
 import {ShowCompleteTasksPipe} from './show-complete-tasks.pipe';
 import {TodoControlsComponent} from './todo-controls/todo-controls.component';
 import {TodoListDataService} from './todo-list-data.service';
+import { SafeUrlPipe } from './safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {TodoListDataService} from './todo-list-data.service';
     TodoListComponent,
     TodoComponent,
     ShowCompleteTasksPipe,
-    TodoControlsComponent
+    TodoControlsComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule

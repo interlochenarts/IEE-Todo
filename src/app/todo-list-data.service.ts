@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {SortSettings} from './sort-settings';
 import {BehaviorSubject} from 'rxjs';
 import {Todo} from './todo';
+import {DomSanitizer} from '@angular/platform-browser';
 
 declare const Visualforce: any;
 
@@ -10,15 +11,22 @@ export class TodoListDataService {
   public sortSettings = new BehaviorSubject<SortSettings>({sortAscending: true, sortColumn: 'dueDate'});
   public todoList = new BehaviorSubject<Todo[]>([]);
 
-  constructor() {
+  constructor(private sanitizer: DomSanitizer) {
     Visualforce.remoting.Manager.invokeAction(
       'IEE_TodoViewController.getTodoList',
       result => {
+        this.fixUrls(result);
         this.todoList.next(result);
         this.sortByColumnName('dueDate');
       },
       {buffer: false}
     );
+  }
+
+  fixUrls(todos: Array<Todo>) {
+    return todos.map( (todo: Todo) => {
+      todo.safeUrl = this.sanitizer.bypassSecurityTrustUrl(todo.linkUrl);
+    })
   }
 
   setSortSettings(settings: SortSettings): void {

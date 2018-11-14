@@ -25,7 +25,7 @@ export class TodoListDataService {
 
   fixUrls(todos: Array<Todo>) {
     return todos.map( (todo: Todo) => {
-      todo.safeUrl = this.sanitizer.bypassSecurityTrustUrl(todo.linkUrl);
+      todo.safeUrl = this.sanitizer.bypassSecurityTrustUrl('/interlochen' + todo.linkUrl);
     })
   }
 

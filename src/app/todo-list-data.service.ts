@@ -15,8 +15,8 @@ export class TodoListDataService {
     Visualforce.remoting.Manager.invokeAction(
       'IEE_TodoViewController.getTodoList',
       result => {
-        this.fixUrls(result);
-        this.todoList.next(result);
+        const updatedResult = this.fixUrls(result);
+        this.todoList.next(updatedResult);
         this.sortByColumnName('dueDate');
       },
       {buffer: false}
@@ -24,9 +24,11 @@ export class TodoListDataService {
   }
 
   fixUrls(todos: Array<Todo>) {
-    return todos.map( (todo: Todo) => {
+    todos.forEach( (todo: Todo) => {
       todo.safeUrl = this.sanitizer.bypassSecurityTrustUrl('/interlochen' + todo.linkUrl);
-    })
+    });
+
+    return todos;
   }
 
   setSortSettings(settings: SortSettings): void {

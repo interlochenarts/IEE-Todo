@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {SortSettings} from './sort-settings';
 import {BehaviorSubject} from 'rxjs';
 import {Todo} from './todo';
-import {DomSanitizer} from '@angular/platform-browser';
+import {SafeUrl, DomSanitizer} from '@angular/platform-browser';
 
 declare const Visualforce: any;
 
@@ -23,12 +23,16 @@ export class TodoListDataService {
     );
   }
 
-  fixUrls(todos: Array<Todo>) {
-    todos.forEach( (todo: Todo) => {
-      todo.safeUrl = this.sanitizer.bypassSecurityTrustUrl('/interlochen' + todo.linkUrl);
+  fixUrls(toDos: Array<Todo>) {
+    const toDoObjects: Array<Todo> = [];
+    toDos.forEach( (todo: Todo) => {
+      const toDoObj = new Todo();
+      todo = Object.assign(toDoObj, todo);
+      toDoObj.safeUrl = this.sanitizer.bypassSecurityTrustUrl('/interlochen' + todo.linkUrl);
+      toDoObjects.push(toDoObj);
     });
 
-    return todos;
+    return toDoObjects;
   }
 
   setSortSettings(settings: SortSettings): void {

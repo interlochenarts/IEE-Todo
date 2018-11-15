@@ -15,7 +15,7 @@ export class TodoListDataService {
       'IEE_TodoViewController.getTodoList',
       result => {
         const toDoObjects: Array<Todo> = [];
-        result.forEach( t => {
+        result.forEach(t => {
           const toDoObj = new Todo();
           Object.assign(toDoObj, t);
           toDoObjects.push(t);
@@ -24,7 +24,7 @@ export class TodoListDataService {
         this.todoList.next(toDoObjects);
         this.sortByColumnName('dueDate');
       },
-      {buffer: false}
+      {buffer: false, escape: false}
     );
   }
 

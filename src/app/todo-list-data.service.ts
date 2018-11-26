@@ -25,7 +25,7 @@ export class TodoListDataService {
         this.todoList.next(toDoObjects);
         this.sortByColumnName('dueDate');
       },
-      {buffer: false}
+      {buffer: false, escape: false}
     );
   }
 

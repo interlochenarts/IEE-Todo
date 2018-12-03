@@ -14,10 +14,17 @@ export class TodoListDataService {
     Visualforce.remoting.Manager.invokeAction(
       'IEE_TodoViewController.getTodoList',
       result => {
-        this.todoList.next(result);
+        const toDoObjects: Array<Todo> = [];
+        result.forEach(t => {
+          const toDoObj = new Todo();
+          Object.assign(toDoObj, t);
+          toDoObjects.push(t);
+        });
+
+        this.todoList.next(toDoObjects);
         this.sortByColumnName('dueDate');
       },
-      {buffer: false}
+      {buffer: false, escape: false}
     );
   }
 

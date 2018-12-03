@@ -1,4 +1,7 @@
 <td>{{todo.personAssigned}}</td>
-<td><a *ngIf="todo.linkUrl" href="/interlochen{{todo.linkUrl}}">{{todo.description}}</a><span *ngIf="!todo.linkUrl">{{todo.description}}</span></td>
+<td>
+  <a *ngIf="todo.linkUrl" [href]="('/interlochen' + todo.linkUrl) | safeUrl">{{todo.description}}</a>
+  <span *ngIf="!todo.linkUrl">{{todo.description}}</span>
+</td>
 <td>{{todo.school}}</td>
 <td [ngClass]="{pastDue:isPastDue}">{{todo.dueDate | date:'EEE MMM d, y'}}</td>

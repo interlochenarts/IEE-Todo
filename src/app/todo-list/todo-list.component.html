@@ -1,22 +1,19 @@
 <div class="row text-center" *ngIf="isLoading">
-    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  <i class="fa fa-2x fa-spinner fa-pulse"></i>
 </div>
 <table class="table table-striped" *ngIf="!isLoading">
   <thead>
   <tr>
-    <th class="col-xs-3" (click)="sortByColumnName('personAssigned');$event.stopPropagation()">Student
-      <i class="fa"
-         [ngClass]="getSortDirectionClass('personAssigned')"></i>
+    <th class="col-3" (click)="sortByColumnName('personAssigned');$event.stopPropagation()">Student
+      <i class="fa" [ngClass]="getSortDirectionClass('personAssigned')"></i>
     </th>
-    <th class="col-xs-5" (click)="sortByColumnName('description');$event.stopPropagation()">Description
-      <i class="fa"
-         [ngClass]="getSortDirectionClass('description')"></i>
+    <th class="col-5" (click)="sortByColumnName('description');$event.stopPropagation()">Description
+      <i class="fa" [ngClass]="getSortDirectionClass('description')"></i>
     </th>
-    <th class="col-xs-2" (click)="sortByColumnName('school');$event.stopPropagation()">School
-      <i class="fa"
-         [ngClass]="getSortDirectionClass('school')"></i>
+    <th class="col-2" (click)="sortByColumnName('school');$event.stopPropagation()">School
+      <i class="fa" [ngClass]="getSortDirectionClass('school')"></i>
     </th>
-    <th class="col-xs-2" (click)="sortByColumnName('dueDate');$event.stopPropagation()">Date Due
+    <th class="col-2" (click)="sortByColumnName('dueDate');$event.stopPropagation()">Date Due
       <i class="fa" [ngClass]="getSortDirectionClass('dueDate')"></i>
     </th>
   </tr>
